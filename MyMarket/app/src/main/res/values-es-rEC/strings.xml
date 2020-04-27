@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Market</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Mapa</string>
+    <string name="menu_gallery">Compras</string>
+    <string name="menu_slideshow">Ventas</string>
+    <string name="menu_producto">Productos</string>
+    <string name="menu_msj">Mensajes</string>
+    <string name="menu_repartidor">Empleados</string>
+    <string name="menu_proveedor">Proveedores</string>
+    <string name="menu_cliente">Clientes</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="descripcion">
+        Ingresa el nombre de la persona que entrega el producto a tu tienda
+
+    </string>
+    <string name="market_detail">
+(%1$.2f, %2$.2f)
+    </string>
+
+    <string name="permiso_gps" >
+
+        My Market necesita utilizar la
+        ubicacion
+
+    </string>
+    <string name="permiso_gps_det" >
+       necesitas configurar la ubicacion para poder sacar el
+        maximo provecho
+       ¿desea permitir que My market utilice la ubicacion?
+    </string>
+</resources>

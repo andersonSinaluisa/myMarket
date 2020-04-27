@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/side_nav_bar"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistroTienda">
+
+    <EditText
+        android:background="@drawable/edittext"
+        android:padding="5dp"
+    android:hint="nombre de tu tienda"
+    android:id="@+id/et_n_tienda"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content">
+
+</EditText>
+    <Spinner
+        android:layout_marginTop="10dp"
+        android:id="@+id/spiner_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+    <EditText
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext"
+        android:hint="identificacion"
+        android:id="@+id/et_ident"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+    </EditText>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_primary"
+        android:text="Iniciar"
+        android:id="@+id/btn_map"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+
+</LinearLayout>

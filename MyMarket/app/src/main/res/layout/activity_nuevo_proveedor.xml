@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.NuevoProveedor">
+
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:gravity="top|center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="#000000"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="left"
+            android:text="Empresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <EditText
+            android:background="@drawable/edittext"
+            android:padding="5dp"
+            android:id="@+id/empresa_n_proveedor"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+        <TextView
+            android:textColor="#000000"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="left"
+            android:text="RUC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <EditText
+
+            android:padding="5dp"
+            android:background="@drawable/edittext"
+            android:id="@+id/ruc_n_proveedor"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+        <TextView
+
+            android:textColor="#000000"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="left"
+            android:text="Representante :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+<TextView
+    android:layout_marginTop="10dp"
+    android:text="@string/descripcion"
+    android:layout_marginLeft="60dp"
+    android:layout_gravity="left"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+</TextView>
+        <EditText
+            android:background="@drawable/edittext"
+            android:padding="5dp"
+            android:id="@+id/representante_n_proveedor"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_cancel_proveedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/fab_margin"
+
+        app:backgroundTint="@color/colorred"
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="MissingConstraints" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save_proveedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+
+        app:backgroundTint="@color/colorgreen"
+        app:srcCompat="@drawable/ic_check"
+        tools:ignore="MissingConstraints" />
+</FrameLayout>
