@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name" translatable="false">My Market</string>
+    <string name="title_activity_principal">Principal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Map</string>
+    <string name="menu_gallery">purchase</string>
+    <string name="menu_slideshow">sales</string>
+    <string name="menu_producto">products</string>
+    <string name="menu_msj">Messages</string>
+    <string name="menu_repartidor">Employees</string>
+    <string name="menu_proveedor">Providers</string>
+    <string name="menu_cliente">customers</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="descripcion">
+        Enter the name of the person who delivers the product to your store
+
+    </string>
+    <string name="market_detail">
+    (%1$.2f, %2$.2f)
+    </string>
+    <string name="permiso_gps">
+      My Market needs to use the Location
+
+    </string>
+    <string name="permiso_gps_det">
+       you need to configure the location to get the maximum benefit
+       Do you want to allow My market to use the location?
+
+    </string>
+
+
+    <!-- Main Activity -->
+    <!-- Mensajes de errores  -->
+    <string name="error_01">enter your username and password</string>
+    <string name="error_02">Incorrect username and / or password</string>
+    <string name="error_03">REGISTER NOW</string>
+
+    <!-- dialogos  -->
+    <string name="dialog_01">Checking credentials</string>
+    <string name="dialog_02">Obtaining data</string>
+    <string name="dialog_03">Obtaining data from your store</string>
+    <!-- hints -->
+    <string name="hint_user">User</string>
+    <string name="hint_pass">Password</string>
+    <!-- botones -->
+    <string name="btn_inicio">log in</string>
+    <string name="btn_registro">register</string>
+    <string name="btn_d_mas">See more</string>
+
+
+    <!-- fragments compras -->
+    <!-- mensaje -->
+    <string name="msj_01">All your purchases will appear here</string>
+
+
+    <!-- Registro -->
+    <string name="r_hint_01">First Name</string>
+    <string name="r_hint_02">Last Name</string>
+    <string name="r_hint_03">ID</string>
+    <!-- textview -->
+    <string name="r_tv_pregunta">
+        Do you want to register
+        your business?
+    </string>
+    <!-- spinner items -->
+    <string name="masculino">male</string>
+    <string name="femenino">female</string>
+    <string name="otro">other</string>
+    <!--- msj -->
+    <string name="r_error_01"></string>
+    <string name="r_error_02"></string>
+    <string name="r_error_03"></string>
+
+
+    <!-- nueva tienda-->
+    <!--hints -->
+    <string name="rt_hint_01">Name</string>
+    <string name="rt_hint_02">ID</string>
+    <string name="rt_hint_03">direction</string>
+    <string name="rt_hint_04">phone</string>
+
+    <!---spinner -->
+    <string name="item_1">Passport card</string>
+    <string name="item_2">RUC</string>
+
+
+</resources>

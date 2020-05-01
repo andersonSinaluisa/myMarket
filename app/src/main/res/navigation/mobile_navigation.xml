@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.today.mymarket.Principal.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+    android:id="@+id/nav_home_second"
+    android:name="com.today.mymarket.Principal.ui.home.HomeSecondFragment"
+    android:label="@string/home_second"
+    tools:layout="@layout/fragment_home_second">
+    <action
+        android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+        app:destination="@id/nav_home" />
+
+    <argument
+        android:name="myArg"
+        app:argType="string" />
+</fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.today.mymarket.Principal.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+    android:id="@+id/nav_slideshow"
+    android:name="com.today.mymarket.Principal.ui.slideshow.SlideshowFragment"
+    android:label="@string/menu_slideshow"
+    tools:layout="@layout/fragment_slideshow" />
+
+
+    <fragment
+        android:id="@+id/nav_productos"
+        android:name="com.today.mymarket.Principal.ui.productos.Productos"
+        android:label="@string/menu_producto"
+        tools:layout="@layout/fragment_productos" />
+
+    <fragment
+        android:id="@+id/nav_mensajes"
+        android:name="com.today.mymarket.Principal.ui.Mensajes.Mensajes"
+        android:label="@string/menu_msj"
+        tools:layout="@layout/fragment_mensajes" />
+
+    <fragment
+        android:id="@+id/nav_repartidor"
+        android:name="com.today.mymarket.Principal.ui.Mensajes.Mensajes"
+        android:label="@string/menu_repartidor"
+        tools:layout="@layout/fragment_repartidor" />
+    <fragment
+    android:id="@+id/nav_proveedor"
+    android:name="com.today.mymarket.Principal.ui.proveedores.Proveedores"
+    android:label="@string/menu_proveedor"
+    tools:layout="@layout/fragment_proveedores" />
+    <fragment
+        android:id="@+id/nav_cliente"
+        android:name="com.today.mymarket.Principal.ui.clientes.ClientesFragment"
+        android:label="@string/menu_cliente"
+        tools:layout="@layout/fragment_clientes" />
+
+</navigation>

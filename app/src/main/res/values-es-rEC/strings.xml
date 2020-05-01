@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Market</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Configuracion</string>
+
+    <string name="menu_home">Mapa</string>
+    <string name="menu_gallery">Compras</string>
+    <string name="menu_slideshow">Ventas</string>
+    <string name="menu_producto">Productos</string>
+    <string name="menu_msj">Mensajes</string>
+    <string name="menu_repartidor">Empleados</string>
+    <string name="menu_proveedor">Proveedores</string>
+    <string name="menu_cliente">Clientes</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="descripcion">
+        Ingresa el nombre de la persona que entrega el producto a tu tienda
+
+    </string>
+    <string name="market_detail">
+(%1$.2f, %2$.2f)
+    </string>
+
+    <string name="permiso_gps" >
+
+        My Market necesita utilizar la
+        ubicación
+
+    </string>
+    <string name="permiso_gps_det" >
+       necesitas configurar la ubicación para poder sacar el
+        máximo provecho
+       ¿desea permitir que My market utilice la ubicación?
+    </string>
+
+
+    <!-- Main Activity -->
+    <!-- Mensajes de errores  -->
+    <string name="error_01">ingresa tu usuario y contraseña</string>
+    <string name="error_02">Usuario y/o contraseña incorrecta</string>
+    <string name="error_03">REGISTRATE AHORA </string>
+    <!-- dialogos  -->
+    <string name="dialog_01">Comprobando credenciales</string>
+    <string name="dialog_02">Obteniendo datos</string>
+    <string name="dialog_03">Obteniendo datos de tu tienda</string>
+    <!-- hints -->
+    <string name="hint_user">Usuario</string>
+    <string name="hint_pass">Contraseña</string>
+    <!-- botones -->
+    <string name="btn_inicio">Iniciar</string>
+    <string name="btn_registro">Registrarse</string>
+    <string name="btn_d_mas">Ver Mas</string>
+
+    <!-- fragments compras -->
+    <!-- mensaje -->
+    <string name="msj_01">Aquí Aparecerean todas tus compras</string>
+
+
+
+    <!-- Registro -->
+    <string name="r_hint_01">Nombre</string>
+    <string name="r_hint_02">Apellido</string>
+    <string name="r_hint_03">Cedula</string>
+    <!-- textview -->
+    <string name="r_tv_pregunta">¿quieres registrar tu negocio?</string>
+    <!-- spinner items -->
+    <string name="masculino">masculino</string>
+    <string name="femenino">femenino</string>
+    <string name="otro">otro</string>
+    <!--- msj -->
+    <string name="r_error_01"></string>
+    <string name="r_error_02"></string>
+    <string name="r_error_03"></string>
+
+
+    <!-- nueva tienda-->
+    <!--hints -->
+    <string name="rt_hint_01">Nombre</string>
+    <string name="rt_hint_02">Identificacion</string>
+    <string name="rt_hint_03">Direccion</string>
+    <string name="rt_hint_04">Telefono</string>
+
+    <!---spinner -->
+    <string name="item_1">Cedula</string>
+    <string name="item_2">RUC</string>
+
+</resources>
+
+
