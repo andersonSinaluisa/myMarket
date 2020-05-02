@@ -40,7 +40,8 @@
         máximo provecho
        ¿desea permitir que My market utilice la ubicación?
     </string>
-
+    <string name="camera">Camara</string>
+    <string name="gallery">Galeria</string>
 
     <!-- Main Activity -->
     <!-- Mensajes de errores  -->
@@ -63,6 +64,9 @@
     <!-- mensaje -->
     <string name="msj_01">Aquí Aparecerean todas tus compras</string>
 
+    <!-- Registro usuario -->
+    <!--dialog-->
+    <string name="ru_title_01">Verificando Datos</string>
 
 
     <!-- Registro -->

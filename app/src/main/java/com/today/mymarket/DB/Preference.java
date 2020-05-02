@@ -19,6 +19,20 @@ public class Preference {
     }
 
 
+    public static void img(Context c, String url_img){
+        SharedPreferences sharedPref= c.getSharedPreferences(c.getString(R.string.app_name), c.MODE_PRIVATE);
+        SharedPreferences.Editor editor =sharedPref.edit();
+        editor.putString("url_img",url_img);
+
+        editor.commit();
+
+    }
+
+
+    public static String getImg(Context c){
+        SharedPreferences sharedPref= c.getSharedPreferences(c.getString(R.string.app_name), c.MODE_PRIVATE);
+        return sharedPref.getString("url_img","");
+    }
 
     public static String getID(Context c){
         SharedPreferences sharedPref= c.getSharedPreferences(c.getString(R.string.app_name), c.MODE_PRIVATE);

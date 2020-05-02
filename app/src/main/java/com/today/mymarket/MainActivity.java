@@ -27,6 +27,7 @@ import com.today.mymarket.Principal.Principal;
 
 import static com.today.mymarket.DB.Preference.datospersona;
 import static com.today.mymarket.DB.Preference.datostienda;
+import static com.today.mymarket.DB.Preference.img;
 import static com.today.mymarket.DB.Preference.lat;
 import static com.today.mymarket.DB.Preference.lonlat;
 
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                                Intent i = new Intent(MainActivity.this, Principal.class);
 
                                //guarda los datos en sharedprefence
+                               img(MainActivity.this, u.getImg_url());
                                Preference.valores(MainActivity.this,u.getId_usuario(),u.getId_persona(),u.getUsuario(),u.getTipo());
                                 //entra al menu principal
                                startActivity(i);

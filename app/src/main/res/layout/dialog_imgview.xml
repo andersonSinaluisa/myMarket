@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+
+            android:layout_marginBottom="40dp"
+            android:gravity="start"
+            android:layout_gravity="top"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="110dp">
+            <LinearLayout
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+
+                tools:ignore="MissingConstraints"
+                android:id="@+id/btn_camera"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+
+                <ImageView
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/ic_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                </ImageView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+
+            android:gravity="center_horizontal"
+            android:layout_gravity="left"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+
+                tools:ignore="MissingConstraints"
+                android:drawSelectorOnTop="false"
+                android:id="@+id/btn_galeria"
+                android:layout_marginRight="40dp"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_gravity="right"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+
+                <ImageView
+                    android:layout_marginRight="40dp"
+                    android:layout_gravity="right"
+                    android:background="@drawable/ic_photo_library"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                </ImageView>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

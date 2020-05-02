@@ -41,6 +41,10 @@
 
     </string>
 
+    <!--- texto -->
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
 
     <!-- Main Activity -->
     <!-- Mensajes de errores  -->
@@ -85,6 +89,11 @@
     <string name="r_error_03"></string>
 
 
+    <!-- Registro usuario -->
+    <!--dialog-->
+    <string name="ru_title_01">Verifying Data</string>
+
+
     <!-- nueva tienda-->
     <!--hints -->
     <string name="rt_hint_01">Name</string>
@@ -95,6 +104,10 @@
     <!---spinner -->
     <string name="item_1">Passport card</string>
     <string name="item_2">RUC</string>
+
+    <string name="title_activity_fullscreen_photo">FullscreenPhoto</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

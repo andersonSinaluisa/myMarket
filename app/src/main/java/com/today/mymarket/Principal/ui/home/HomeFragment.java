@@ -53,6 +53,7 @@ import com.today.mymarket.Activities.ProductosTienda;
 import com.today.mymarket.DB.Firebase;
 import com.today.mymarket.DB.Tienda;
 import com.today.mymarket.MapsActivity;
+import com.today.mymarket.Principal.Principal;
 import com.today.mymarket.Principal.ui.productos.Productos;
 import com.today.mymarket.R;
 
@@ -61,6 +62,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import static com.today.mymarket.DB.Preference.direccion;
 import static com.today.mymarket.DB.Preference.getID;
@@ -76,7 +78,7 @@ import static com.today.mymarket.DB.Preference.tipo;
 import static com.today.mymarket.DB.Preference.usuario;
 
 
-public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragListener,OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragListener,OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private Toolbar toolbar;
     private String newTitle;
@@ -99,6 +101,8 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
     private String nombre;
 
 
+    private Holder h;
+
     private int permissionchecked;
 
 
@@ -115,6 +119,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
 
         fab = (FloatingActionButton) root.findViewById(R.id.fab_map);
+        h = new Holder(root.getContext());
 
 
 
@@ -129,9 +134,14 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
         });
 
 
-        lonlat_bd(id_tienda(root.getContext()));
 
 
+
+
+        if(tipo(root.getContext())==1 ) {
+            lonlat_bd(id_tienda(root.getContext()));
+
+        }
         //esta parte es muy compleja xdxd pero te dejo el enlace de algunos videos que vi
         //https://www.youtube.com/watch?v=b2D21Ke_tWE&list=RDCMUCFWm9y6wXOpPkhg9CT5tbQg&index=2
 
@@ -140,12 +150,26 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
 
         //--------------si tiene el permiso concedido----------//
+        LocationManager locationManager = (LocationManager) root.getContext().getSystemService(Context.LOCATION_SERVICE);
 
+
+
+        List<String> prove = locationManager.getAllProviders();
+        for (String l_pro: prove) {
+            System.out.println(l_pro);
+        }
         if(permissionchecked== PackageManager.PERMISSION_GRANTED) {
 
             //si la longitud y latitud de las preferencias son vacias
-            if(longitud==0 && latitud==0 ){
-                LocationManager locationManager = (LocationManager) root.getContext().getSystemService(Context.LOCATION_SERVICE);
+            if(tipo(root.getContext())==1 && longitud==0 && latitud==0 || tipo(root.getContext())==2){
+
+                if(!locationManager.isProviderEnabled("gps")){
+
+                        Toast.makeText(root.getContext(),"encienda el qps",Toast.LENGTH_LONG).show();
+
+                }
+
+
 
                 LocationListener locationListener = new LocationListener() {
                     @Override
@@ -153,8 +177,8 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
                         LatLng sydney;
                         String sNombre =null;
                         //--------ubicacion-------/
-                        double lat = location.getLatitude();
-                        double lon = location.getLongitude();
+                        final double lat = location.getLatitude();
+                        final double lon = location.getLongitude();
 
 
                         sydney = new LatLng(lat, lon);
@@ -162,7 +186,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
 
 
-                        if(tipo(root.getContext())==1){
+                        if(tipo(root.getContext())==1 && longitud==0 && latitud==0){
 
                             final Firebase db = new Firebase();
                             sNombre= tienda(root.getContext());
@@ -180,6 +204,18 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
                             DatabaseReference rfp = db.getmDatabase("tiendas");
                             rfp.child(t.getId_tienda()).setValue(t);
                             list.clear();
+                        }else{
+                            if(tipo(root.getContext())==2){
+                                marker=null;
+                                GoogleMap map;
+                                map = mMap;
+
+                                map.setMyLocationEnabled(true);
+
+
+                            }
+
+
                         }
 
 
@@ -197,12 +233,12 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
                     @Override
                     public void onProviderEnabled(String provider) {
-                        Toast.makeText(root.getContext(), "GPS activado",Toast.LENGTH_LONG).show();
+
                     }
 
                     @Override
                     public void onProviderDisabled(String provider) {
-                        Toast.makeText(root.getContext(), "GPS desactivado",Toast.LENGTH_LONG).show();
+
                     }
                 };
 
@@ -211,6 +247,10 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
 
             }
+
+
+
+
         }else{
             //------si no lo tiene-----------//
             //----- DIALOGO PERSONALIZADO----//
@@ -297,15 +337,24 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
                         Tienda p = obj.getValue(Tienda.class);
                         assert p != null;
 
-                        list.add(p);
-                        System.out.println("---------->"+list.size()+list);
-                        LatLng gye = new LatLng(p.getLatitud(), p.getLongitud());
-                        marker = googleMap.addMarker(new MarkerOptions().position(gye).title(p.getNombre()).icon(BitmapDescriptorFactory.fromResource(R.drawable.market)));
-                        marker.setTag(p);
-                        if(p.getId_tienda().equals(id_tienda(getContext()))){
 
+
+
+                        LatLng gye = new LatLng(p.getLatitud(), p.getLongitud());
+
+                        marker = googleMap.addMarker(new MarkerOptions().position(gye).title(p.getNombre()));
+                        marker.setTag(p);
+
+                        if(p.getId_tienda().equals(id_tienda(h.getC()))){
+                            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.pin_tienda));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gye,25));
+                        }else{
+                            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.compras));
                         }
                         lm.add(marker);
+                        list.add(p);
+
+
 
 
 
@@ -336,10 +385,11 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
         mMap = googleMap;
         MapsInitializer.initialize(getContext());
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
 
         list.clear();
+
         listar(googleMap);
 
 
@@ -364,60 +414,65 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
             String lat = Double.toString(_marker.getPosition().latitude);
 
 
+            if(!t.getId_tienda().equals(id_tienda(getContext()))){
 
-            BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(getActivity());
-            LayoutInflater layoutInflater = getLayoutInflater();
-            final View view = layoutInflater.inflate(R.layout.bottom_dialog, null);
-            mBottomSheetDialog.setContentView(view);
+                BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(getActivity());
+                LayoutInflater layoutInflater = getLayoutInflater();
+                final View view = layoutInflater.inflate(R.layout.bottom_dialog, null);
+                mBottomSheetDialog.setContentView(view);
 
-            mBottomSheetDialog.show();
+                mBottomSheetDialog.show();
 
-            TextView textViewtelefono = (TextView) view.findViewById(R.id.d_telefono);
-            TextView nombre = (TextView) view.findViewById(R.id.d_nombre);
-            TextView direccion = (TextView) view.findViewById(R.id.d_direccion);
-            LinearLayout telefono = (LinearLayout) view.findViewById(R.id.ld_telefono);
-            Button btn = (Button) view.findViewById(R.id.btn_see_more);
+                TextView textViewtelefono = (TextView) view.findViewById(R.id.d_telefono);
+                TextView nombre = (TextView) view.findViewById(R.id.d_nombre);
+                TextView direccion = (TextView) view.findViewById(R.id.d_direccion);
+                LinearLayout telefono = (LinearLayout) view.findViewById(R.id.ld_telefono);
+                Button btn = (Button) view.findViewById(R.id.btn_see_more);
 
 
-            assert t != null;
-            nombre.setText(t.getNombre());
-            direccion.setText(t.getDireccion());
-            textViewtelefono.setText(t.getTelefono());
+                assert t != null;
+                nombre.setText(t.getNombre());
+                direccion.setText(t.getDireccion());
+                textViewtelefono.setText(t.getTelefono());
 
-            telefono.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //realiza una llamada
+                telefono.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //realiza una llamada
 
-                    final int MY_PERMISSIONS_REQUEST_CALL_PHONE = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE);;
+                        final int MY_PERMISSIONS_REQUEST_CALL_PHONE = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE);;
 
-                    if(MY_PERMISSIONS_REQUEST_CALL_PHONE == PackageManager.PERMISSION_GRANTED){
-                        Intent illamar = new Intent();
-                        illamar.setAction(Intent.ACTION_CALL);
-                        illamar.setData(Uri.parse("tel:"+t.getTelefono()));
-                        startActivity(illamar);
-                    }else{
-                        ActivityCompat.requestPermissions(requireActivity(),
-                                new String[]{Manifest.permission.CALL_PHONE},
-                                1);
+                        if(MY_PERMISSIONS_REQUEST_CALL_PHONE == PackageManager.PERMISSION_GRANTED){
+                            Intent illamar = new Intent();
+                            illamar.setAction(Intent.ACTION_CALL);
+                            illamar.setData(Uri.parse("tel:"+t.getTelefono()));
+                            startActivity(illamar);
+                        }else{
+                            ActivityCompat.requestPermissions(requireActivity(),
+                                    new String[]{Manifest.permission.CALL_PHONE},
+                                    1);
+                        }
+
+
+
+
+
                     }
+                });
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getActivity(), ProductosTienda.class);
+                        i.putExtra("id_tienda", t.getId_tienda());
+                        startActivity(i);
+
+                    }
+                });
 
 
+            }
 
-
-
-                }
-            });
-
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   Intent i = new Intent(getActivity(), ProductosTienda.class);
-                   i.putExtra("id_tienda", t.getId_tienda());
-                   startActivity(i);
-
-                }
-            });
 
 
         }
@@ -475,6 +530,25 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMarkerDragList
 
 
 
+    public static class Holder{
+        private Context c;
 
+        public Holder(){
 
+        }
+
+        public Holder(Context c){
+            this.c=c;
+        }
+
+        public Context getC() {
+            return c;
+        }
+
+        public void setC(Context c) {
+            this.c = c;
+        }
+    }
 }
+
+

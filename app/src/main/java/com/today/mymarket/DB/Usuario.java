@@ -7,18 +7,20 @@ public class Usuario {
     private int tipo;
     private String id_persona;
     private int estado;
+    private String img_url;
 
     public Usuario(){
 
     }
 
-    public Usuario(String id_usuario, String usuario, String pass, int tipo, String id_persona, int estado) {
+    public Usuario(String id_usuario, String usuario, String pass, int tipo, String id_persona, int estado, String img_url) {
         this.id_usuario = id_usuario;
         this.usuario = usuario;
         this.pass = pass;
         this.tipo = tipo;
         this.id_persona = id_persona;
         this.estado = estado;
+        this.img_url = img_url;
     }
 
     public String getId_usuario() {
@@ -67,5 +69,14 @@ public class Usuario {
 
     public void setId_persona(String id_persona) {
         this.id_persona = id_persona;
+    }
+
+
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 }

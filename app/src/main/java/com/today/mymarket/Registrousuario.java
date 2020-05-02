@@ -3,6 +3,7 @@ package com.today.mymarket;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.today.mymarket.Principal.Principal;
 import java.util.UUID;
 
 import static com.today.mymarket.DB.Preference.datospersona;
+import static com.today.mymarket.DB.Preference.img;
 import static com.today.mymarket.DB.Preference.valores;
 
 
@@ -33,6 +35,9 @@ public class Registrousuario extends AppCompatActivity {
     private StorageReference refstorage = storage.getReferenceFromUrl("gs://mymarket-54d29.appspot.com/");
     private EditText et_usuario, et_clave, et_clave1;
     private Button btn_registro;
+
+
+    private ProgressDialog dialog ;
 
     private String nombre;
     private String apellido;
@@ -56,7 +61,7 @@ public class Registrousuario extends AppCompatActivity {
         et_clave=(EditText)findViewById(R.id.n_pass1);
         et_clave1=(EditText)findViewById(R.id.n_pass);
 
-
+        dialog= new ProgressDialog(Registrousuario.this);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +74,8 @@ public class Registrousuario extends AppCompatActivity {
                     Toast.makeText(Registrousuario.this,"ingresa tus credencias", Toast.LENGTH_LONG).show();
 
                 }else{
+                    dialog.setTitle(getString(R.string.ru_title_01));
+                    dialog.show();
                     if(clave.equals(clave1)){
                         //claves iguales
 
@@ -77,6 +84,7 @@ public class Registrousuario extends AppCompatActivity {
                     }else{
 
                         //claves diferentes
+                        dialog.dismiss();
                         Toast.makeText(Registrousuario.this,"verifica la contraseña", Toast.LENGTH_LONG).show();
 
                     }
@@ -101,6 +109,7 @@ public class Registrousuario extends AppCompatActivity {
                         Usuario u = objSnaptshot.getValue(Usuario.class);
                         assert u != null;
                         if (u.getUsuario().equals(usuario)) {
+                            dialog.dismiss();
                             Toast.makeText(Registrousuario.this, "este nombre de usuario ya exite", Toast.LENGTH_LONG).show();
                             break;
                         } else {
@@ -116,36 +125,46 @@ public class Registrousuario extends AppCompatActivity {
                             usuario_n.setUsuario(usuario);
                             usuario_n.setPass(et_clave.getText().toString());
                             usuario_n.setEstado(1);
+                            usuario_n.setImg_url("https://www.nicepng.com/png/full/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png");
+
+
                             if (check.equals("seleccionado")) {
                                 usuario_n.setTipo(1);  //tienda
                             } else {
                                 usuario_n.setTipo(2);  //cliente
                             }
+
+
                             usuario_n.setId_persona(p.getId_persona());
 
                             DatabaseReference rfp = db.getmDatabase("personas");
                             DatabaseReference rfu = db.getmDatabase("usuarios");
                             rfp.child(p.getId_persona()).setValue(p);
                             rfu.child(usuario_n.getId_usuario()).setValue(usuario_n);
+
+                            img(Registrousuario.this, usuario_n.getImg_url());
+                            valores(Registrousuario.this, usuario_n.getId_usuario(), usuario_n.getId_persona(), usuario_n.getUsuario(), usuario_n.getTipo());
+                            datospersona(Registrousuario.this, p.getNombre(),p.getApellido(),p.getCedula(),p.getGenero());
+
+
                             if (usuario_n.getTipo() == 1) {
 
                                 Intent i = new Intent(Registrousuario.this, RegistroTienda.class);
                                 i.putExtra("id_usuario", usuario_n.getId_usuario());
-                                valores(Registrousuario.this, usuario_n.getId_usuario(), usuario_n.getId_persona(), usuario_n.getUsuario(), usuario_n.getTipo());
-                                datospersona(Registrousuario.this, p.getNombre(),p.getApellido(),p.getCedula(),p.getGenero());
+
 
                                 StorageReference usuario =refstorage.child(usuario_n.getId_usuario()+"/"+usuario_n.getId_persona()+"/");
 
-
+                                dialog.dismiss();
                                 startActivity(i);
                                 break;
 
                             } else {
                                 if (usuario_n.getTipo() == 2) {
-                                StorageReference usuario =refstorage.child(usuario_n.getId_usuario()+"/"+usuario_n.getId_persona()+"/");
-                                StorageReference mensajes =refstorage.child(usuario_n.getId_usuario()+"/"+"Mensajes/Fotos/");
+
                                 Intent i = new Intent(Registrousuario.this, Principal.class);
                                 i.putExtra("id_usuario", usuario_n.getId_usuario());
+                                dialog.dismiss();
                                 startActivity(i);
                                 break;
                                 }
@@ -167,6 +186,7 @@ public class Registrousuario extends AppCompatActivity {
                     usuario_n.setUsuario(usuario);
                     usuario_n.setPass(et_clave.getText().toString());
                     usuario_n.setEstado(1);
+                    usuario_n.setImg_url("https://www.nicepng.com/png/full/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png");
                     if (check.equals("seleccionado")) {
                         usuario_n.setTipo(1);  //tienda
                     } else {
@@ -178,25 +198,31 @@ public class Registrousuario extends AppCompatActivity {
                     DatabaseReference rfu = db.getmDatabase("usuarios");
                     rfp.child(p.getId_persona()).setValue(p);
                     rfu.child(usuario_n.getId_usuario()).setValue(usuario_n);
+
+                    img(Registrousuario.this, usuario_n.getImg_url());
+                    valores(Registrousuario.this, usuario_n.getId_usuario(), usuario_n.getId_persona(), usuario_n.getUsuario(), usuario_n.getTipo());
+                    datospersona(Registrousuario.this, p.getNombre(),p.getApellido(),p.getCedula(),p.getGenero());
+
                     if (usuario_n.getTipo() == 1) {
 
                         Intent i = new Intent(Registrousuario.this, RegistroTienda.class);
                         i.putExtra("id_usuario", usuario_n.getId_usuario());
-                        valores(Registrousuario.this, usuario_n.getId_usuario(), usuario_n.getId_persona(), usuario_n.getUsuario(), usuario_n.getTipo());
-                        datospersona(Registrousuario.this, p.getNombre(),p.getApellido(),p.getCedula(),p.getGenero());
 
-                        StorageReference usuario =refstorage.child(usuario_n.getId_usuario()+"/"+usuario_n.getId_persona()+"/");
 
+
+                        dialog.dismiss();
 
                         startActivity(i);
 
 
                     } else if (usuario_n.getTipo() == 2) {
-                        StorageReference usuario =refstorage.child(usuario_n.getId_usuario()+"/"+usuario_n.getId_persona()+"/");
-                        StorageReference mensajes =refstorage.child(usuario_n.getId_usuario()+"/"+"Mensajes/Fotos/");
+
+
                         Intent i = new Intent(Registrousuario.this, Principal.class);
                         i.putExtra("id_usuario", usuario_n.getId_usuario());
+                        dialog.dismiss();
                         startActivity(i);
+
 
                     }
 

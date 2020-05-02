@@ -116,6 +116,17 @@ public class NuevoProducto extends AppCompatActivity {
 
         listarProveedores(id_tienda(NuevoProducto.this));
         listar_tipo();
+
+
+        if(nombre.getText().toString().equals("") || codigo.getText().toString().equals("") || precio.getText().toString().equals("")
+        || pvp.getText().toString().equals("")){
+
+            fab_photo.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+            fab_photo.setEnabled(false);
+
+        }
+
+
         fab_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,11 +157,16 @@ public class NuevoProducto extends AppCompatActivity {
 
 
         //tipo de producto
-        spiner_tipo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spiner_tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Tipo_Producto t = (Tipo_Producto) parent.getSelectedItem();
                 id_tipo_producto= t.getId_tipo_producto();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -164,8 +180,6 @@ public class NuevoProducto extends AppCompatActivity {
                 String _nombre=nombre.getText().toString().trim();
 
                 if(_nombre.equals("") || codigo.getText().toString().equals("")  || p.equals("") || pv.equals("") || id_proveedor.equals("") || id_proveedor==null){
-
-
 
                     Toast.makeText(NuevoProducto.this, "ingrese todo los datos", Toast.LENGTH_LONG).show();
                 }else{
@@ -252,6 +266,7 @@ public class NuevoProducto extends AppCompatActivity {
             Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+
                     if(!task.isSuccessful()){
 
                         Toast.makeText(NuevoProducto.this, "ERROR",Toast.LENGTH_LONG).show();

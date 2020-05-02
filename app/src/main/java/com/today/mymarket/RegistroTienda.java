@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,6 +44,8 @@ public class RegistroTienda extends AppCompatActivity {
     private String id_usuario;
     private String tipo_id;
 
+    private ProgressDialog dialog ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,8 @@ public class RegistroTienda extends AppCompatActivity {
         spiner_id = (Spinner) findViewById(R.id.spiner_id);
         et_direccion = (EditText) findViewById(R.id.et_direccion);
         et_telefono = (EditText) findViewById(R.id.et_telefono);
+
+        dialog= new ProgressDialog(RegistroTienda.this);
 
 
         final String item1 = getString(R.string.item_1);
@@ -78,6 +83,8 @@ public class RegistroTienda extends AppCompatActivity {
                     Toast.makeText(RegistroTienda.this, "ingresa los datos", Toast.LENGTH_LONG).show();
                     /////////campos vacios//////////////
                 } else {
+                    dialog.setTitle(getString(R.string.ru_title_01));
+                    dialog.show();
                     ///////////spiner elegir tipo id////////////////////
                     if (tipo_id.equals(item1)) {
                         ////////////////CEDULA///////////////////////////////////////
@@ -86,6 +93,7 @@ public class RegistroTienda extends AppCompatActivity {
                             validate_identificacion(identificacion);
 
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(RegistroTienda.this, "identificacion incorrecta", Toast.LENGTH_LONG).show();
                         }
 
@@ -95,6 +103,7 @@ public class RegistroTienda extends AppCompatActivity {
                             validate_identificacion(identificacion);
 
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(RegistroTienda.this, "identificacion incorrecta", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -125,7 +134,8 @@ public class RegistroTienda extends AppCompatActivity {
                         Tienda u = objSnaptshot.getValue(Tienda.class);
                         assert u != null;
                         if (u.getIdentificacion().equals(identificacion)) {
-                            Toast.makeText(RegistroTienda.this, "este nombre de usuario ya exite", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                            Toast.makeText(RegistroTienda.this, "esta identificacion ya esta en uso", Toast.LENGTH_LONG).show();
                             break;
                         } else {
                             Tienda p = new Tienda();
@@ -148,6 +158,7 @@ public class RegistroTienda extends AppCompatActivity {
 
                             rfp.child(p.getId_tienda()).setValue(p);
                             Intent i = new Intent(RegistroTienda.this, Principal.class);
+                            dialog.dismiss();
                             startActivity(i);
                             break;
                         }
@@ -177,6 +188,7 @@ public class RegistroTienda extends AppCompatActivity {
 
                     rfp.child(p.getId_tienda()).setValue(p);
                     Intent i = new Intent(RegistroTienda.this, Principal.class);
+                    dialog.dismiss();
                     startActivity(i);
 
 

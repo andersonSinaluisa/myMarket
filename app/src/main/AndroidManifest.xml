@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.today.mymarket">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -14,18 +15,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application xmlns:app="http://schemas.android.com/apk/res-auto"
+
         android:name=".DB.Firebase"
         android:allowBackup="true"
         android:appCategory="maps"
-        android:persistent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:persistent="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
-        <activity android:name=".Activities.ProductosTienda"></activity>
+        <activity
+            android:name=".Activities.FullscreenPhoto"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen_photo"
+            android:theme="@style/FullscreenTheme" ></activity>
+        <activity android:name=".Activities.ProductosTienda" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

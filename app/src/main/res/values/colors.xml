@@ -11,4 +11,6 @@
     <color name="t">#D003A9F4</color>
     <color name="m">#00D4AA</color>
     <color name="b">#21F3DE</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -69,8 +69,10 @@ public class Mensajes extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), NuevoMensaje.class);
-                startActivity(i);
+                //deberia llevar a una lista de contactos o algo asi
+
+               // Intent i = new Intent(getActivity(), NuevoMensaje.class);
+              //  startActivity(i);
             }
         });
 
